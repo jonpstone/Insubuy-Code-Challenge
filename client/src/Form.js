@@ -40,7 +40,6 @@ class Form extends React.Component {
         (parsedAge < (currentYear - 100) || parsedAge > (currentYear - 18))) {
       ageError = "User must be between 18 and 99 years old";
     }
-
     if (ageError) {
       this.setState({ ageError });
       return false;
@@ -50,7 +49,6 @@ class Form extends React.Component {
 
   citizenshipValidate = () => {
     let citizenshipError = '';
-    console.log(this.state.citizenship)
     if (!/^[a-zA-Z\s]*$/g.test(this.state.citizenship)) {
       citizenshipError = "Cannot include special characters or numbers";
     }
@@ -96,7 +94,10 @@ class Form extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Policy Maximum
-          <select name="maximumPolicy" value={this.state.value} onChange={this.handleChange}>
+          <select name="maximumPolicy" 
+            value={this.state.maximumPolicy} 
+            onChange={this.handleChange}
+          >
             <option defaultValue="choose">Choose your policy maximum</option>
             <option value="50">50,000</option>
             <option value="100">100,000</option>
@@ -109,6 +110,7 @@ class Form extends React.Component {
           Age:
           <input
             name="age"
+            value={this.state.age}
             type="text" 
             placeholder="Choose your age" 
             onChange={this.handleChange} 
@@ -119,12 +121,14 @@ class Form extends React.Component {
           Travel Dates (mm/dd/yyyy)
           <input 
             name="startDate" 
+            value={this.state.startDate}
             type="text" 
             placeholder="Start Date" 
             onChange={this.handleChange} 
           />
           <input 
             name="endDate"
+            value={this.state.endDate}
             type="text" 
             placeholder="End Date" 
             onChange={this.handleChange}
@@ -135,6 +139,7 @@ class Form extends React.Component {
           Citizenship
           <input
             name="citizenship" 
+            value={this.state.citizenship}
             type="text" 
             placeholder="Choose Your Country of Citizenship" 
             onChange={this.handleChange} 
@@ -145,6 +150,7 @@ class Form extends React.Component {
           Mailing State
           <input 
             name="mailingState"
+            value={this.state.mailingState}
             type="text" 
             placeholder="Choose State" 
             onChange={this.handleChange} 
