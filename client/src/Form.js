@@ -12,6 +12,7 @@ const initialState = {
   // Initial Error Values
   maximumPolicyError: '',
   ageError: '',
+  dateError: '',
   travelDatesError: '',
   citizenshipError: '',
   mailingStateError: '',
@@ -47,6 +48,27 @@ class Form extends React.Component {
     return true;
   }
 
+  // dateValidate = () => {
+  //   const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+  //   let startDateEntry = new Date(this.state.startDate).getTime();
+  //   let endDateEntry = new Date(this.state.endDate).getTime();
+  //   let dateError = '';
+
+  //   console.log(dateRegex.test(this.state.startDate))
+
+  //   if (!dateRegex.test(this.state.startDate) && !dateRegex.test(this.state.endDate)) {
+  //     dateError = "Date must be in mm/dd/yyyy format";
+  //   }
+  //   else if (!startDateEntry < endDateEntry) {
+  //     dateError = "Start date must be before end date";
+  //   }
+  //   if (dateError) {
+  //     this.setState({ dateError });
+  //     return false;
+  //   }
+  //   return true;
+  // };
+
   citizenshipValidate = () => {
     let citizenshipError = '';
     if (!/^[a-zA-Z\s]*$/g.test(this.state.citizenship)) {
@@ -79,9 +101,8 @@ class Form extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.ageValidate() && 
-                    this.citizenshipValidate() &&
-                    this.mailingStateValidate();
+    const isValid = this.ageValidate() && this.citizenshipValidate() &&
+                    this.mailingStateValidate() && this.dateValidate();
     if (isValid) {
       console.log(this.state);
       // clear form
